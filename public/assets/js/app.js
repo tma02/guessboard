@@ -8,6 +8,7 @@ $(function() {
 	var paint = false;
 	var color = "#333333";
 	$('#gameCanvas').attr('width', $('#canvasContainer').width());
+  $('#everything').hide();
 
 	var socket = io('http://localhost');
   socket.on('version', function (data) {
@@ -22,6 +23,8 @@ $(function() {
   	socket.emit('joinRoom', {roomId: roomId});
   	socket.on('joinedRoom', function(data) {
   		//start stuff
+  		console.log(data);
+  		$('#users').html(data.userList);
   		inRoom = true;
   		joinedRoom();
   	});
@@ -29,7 +32,7 @@ $(function() {
 
   function joinedRoom() {
   	console.log('game start');
-  	
+  	$('#everything').show();
   	socket.on('userId', function(data) {
   		self.id = data;
   	});
@@ -39,6 +42,15 @@ $(function() {
   		if (data.userId !== self.id) {
   			addClick(data.x, data.y, data.lastX, data.lastY, data.color, false);
   		}
+  	});
+
+  	socket.on('chat', function(data) {
+  		$('#messages').append($('<li>').text(data.user + ': ' + data.message));
+  		$("#messages").scrollTop($("#messages")[0].scrollHeight);
+  	});
+
+  	socket.on('updateUserList', function(data) {
+  		$('#users').html(data.userList);
   	});
 
   	$('#gameCanvas').mousedown(function(e) {

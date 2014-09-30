@@ -12,3 +12,21 @@
 	margin-right: auto;
 	max-width: 1000px;
 }
+
+#messages {
+	list-style-type: none;
+	margin: 0;
+	margin-top: 25px;
+	padding: 0;
+	word-wrap: break-word;
+	max-height: 384px;
+	overflow: auto;
+}
+
+#messages li {
+	padding: 5px 10px;
+}
+
+#messages li:nth-child(odd) {
+	background: #eee;
+}
