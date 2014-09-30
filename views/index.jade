@@ -1,0 +1,14 @@
+doctype html
+html(lang="en")
+  head
+    title="Guessboard"
+    link(rel="stylesheet", type="text/css", href="/assets/css/bootstrap.min.css")
+    link(rel="stylesheet", type="text/css", href="/assets/css/app.css")
+  body
+    .container
+      .header
+        h1="Guessboard"
+      .jumbotron
+        h1(style="margin-top: 0;")="Guessboard"
+        p.lead="Guess what your friends are drawing."
+        a.btn.btn-lg.btn-success(href="/game/#{roomId}")="Create a room"

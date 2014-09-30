@@ -1,0 +1,20 @@
+doctype html
+html(lang="en")
+  head
+    title="Guessboard"
+    link(rel="stylesheet", type="text/css", href="/assets/css/bootstrap.min.css")
+    link(rel="stylesheet", type="text/css", href="/assets/css/app.css")
+    script(type='text/javascript').
+      var roomId = '#{roomId}';
+  body
+    .container
+      .header
+        h1="Guessboard"
+      .row
+        .col-md-9#canvasContainer
+          canvas(width="512", height="384", id="gameCanvas", style="border: solid 1px #e5e5e5; margin-top: 25px;")
+        .col-md-3
+          p="chat stuff"
+  script(type='text/javascript', src="/assets/js/jquery.min.js")
+  script(type='text/javascript', src="/socket.io/socket.io.js")
+  script(type='text/javascript', src="/assets/js/app.js")

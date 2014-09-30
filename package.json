@@ -1,0 +1,18 @@
+{
+  "name": "guessboard",
+  "description": "Online drawing guessing game.",
+  "version": "0.0.1",
+  "author": "tma02",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "private": true,
+  "dependencies": {
+    "chance": "^0.6.1",
+    "express": "4.x",
+    "jade": "^1.7.0",
+    "socket.io": "^1.1.0",
+    "uuid": "^2.0.1"
+  }
+}
