@@ -6,6 +6,7 @@ $(function() {
 	var lastX = 0;
 	var lastY = 0;
 	var paint = false;
+  var canPaint = false;
 	var color = "#333333";
 	$('#gameCanvas').attr('width', $('#canvasContainer').width());
   $('#everything').hide();
@@ -53,6 +54,10 @@ $(function() {
   		$('#users').html(data.userList);
   	});
 
+    socket.on('updateDrawer', function(data) {
+      canPaint = (data.drawerId === self.id);
+    })
+
   	$('#gameCanvas').mousedown(function(e) {
   	  lastX = e.pageX - this.parentNode.offsetLeft - this.offsetLeft;
   	  lastY = e.pageY - this.parentNode.offsetTop - this.offsetTop;
@@ -76,18 +81,20 @@ $(function() {
   	});
 
   	function addClick(x, y, lastX, lastY, color, localDraw) {
-  		var context = document.getElementById('gameCanvas').getContext("2d");
-  	  context.strokeStyle = color;
-  	  context.lineJoin = "round";
-  	  context.lineWidth = 5;
-  	  context.beginPath();
-  	  context.moveTo(lastX, lastY);
-  	  context.lineTo(x, y);
-  	  context.closePath();
-  	  context.stroke();
-  	  if (localDraw) {
-  	  	socket.emit('draw', {x: x, y: y, lastX: lastX, lastY: lastY, color: color});
-  	  }
+      if (canPaint || !localDraw) {
+        var context = document.getElementById('gameCanvas').getContext("2d");
+        context.strokeStyle = color;
+        context.lineJoin = "round";
+        context.lineWidth = 5;
+        context.beginPath();
+        context.moveTo(lastX, lastY);
+        context.lineTo(x, y);
+        context.closePath();
+        context.stroke();
+        if (localDraw) {
+          socket.emit('draw', {x: x, y: y, lastX: lastX, lastY: lastY, color: color});
+        }
+      }
   	}
 
   	function clear() {
