@@ -3,4 +3,14 @@ guessboard
 
 A place to guess what your friends are drawing.
 
-This project does not currently do everything it's intended to do.
+#Usage
+
+Clone the repo
+
+Install dependencies
+
+```$ npm install```
+
+and start the server
+
+```$ npm start```
