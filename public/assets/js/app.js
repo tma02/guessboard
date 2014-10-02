@@ -29,14 +29,14 @@ $(function() {
   		inRoom = true;
   		joinedRoom();
   	});
+    socket.on('userId', function(data) {
+      self.id = data;
+    });
   }
 
   function joinedRoom() {
   	console.log('game start');
   	$('#everything').show();
-  	socket.on('userId', function(data) {
-  		self.id = data;
-  	});
 
   	socket.on('draw', function(data) {
   		console.log(data.userId);
@@ -55,8 +55,16 @@ $(function() {
   	});
 
     socket.on('updateDrawer', function(data) {
+      console.log('new drawer ' + data.drawerId);
       canPaint = (data.drawerId === self.id);
-    })
+    });
+
+    $('#chatbar').keypress(function(e) {
+      if(e.which == 13) {
+        socket.emit('chat', {message: $(this).val()});
+        $(this).val('');
+      }
+    });
 
   	$('#gameCanvas').mousedown(function(e) {
   	  lastX = e.pageX - this.parentNode.offsetLeft - this.offsetLeft;
