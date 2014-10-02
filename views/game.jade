@@ -16,6 +16,8 @@ html(lang="en")
         .col-md-3
           ul#messages
           input.form-control#chatbar(type="text", placeholder="Type here to chat")
+      p.
+        Users in room #{roomId}:
       p#users
   script(type='text/javascript', src="/assets/js/jquery.min.js")
   script(type='text/javascript', src="/socket.io/socket.io.js")

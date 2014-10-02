@@ -57,6 +57,7 @@ $(function() {
     socket.on('updateDrawer', function(data) {
       console.log('new drawer ' + data.drawerId);
       canPaint = (data.drawerId === self.id);
+      clear();
     });
 
     $('#chatbar').keypress(function(e) {
