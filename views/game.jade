@@ -10,9 +10,12 @@ html(lang="en")
     .container
       .header
         h1="Guessboard"
+      .timer
+        .progress
+          .progress-bar#timer
       .row#everything
         .col-md-9#canvasContainer
-          canvas(width="512", height="384", id="gameCanvas", style="border: solid 1px #e5e5e5; margin-top: 25px;")
+          canvas(width="512", height="384", id="gameCanvas", style="border: solid 1px #e5e5e5;")
         .col-md-3
           ul#messages
           input.form-control#chatbar(type="text", placeholder="Type here to chat")

@@ -8,6 +8,8 @@ $(function() {
 	var paint = false;
   var canPaint = false;
 	var color = "#333333";
+  var timeLeft = 0;
+  var maxTime = 60;
 	$('#gameCanvas').attr('width', $('#canvasContainer').width());
   $('#everything').hide();
 
@@ -37,6 +39,13 @@ $(function() {
   function joinedRoom() {
   	console.log('game start');
   	$('#everything').show();
+    setInterval(function() {
+      timeLeft--;
+      if (timeLeft <= 0) {
+        return;
+      }
+      $('#timer').css('width', ((timeLeft / maxTime) * 100) + '%');
+    }, 1000);
 
   	socket.on('draw', function(data) {
   		console.log(data.userId);
@@ -58,6 +67,11 @@ $(function() {
       console.log('new drawer ' + data.drawerId);
       canPaint = (data.drawerId === self.id);
       clear();
+    });
+
+    socket.on('timerUpdate', function(data) {
+      timeLeft = data.timeLeft;
+      maxTime = data.maxTime;
     });
 
     $('#chatbar').keypress(function(e) {
