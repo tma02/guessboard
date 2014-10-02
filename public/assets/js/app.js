@@ -13,13 +13,20 @@ $(function() {
 	$('#gameCanvas').attr('width', $('#canvasContainer').width());
   $('#everything').hide();
 
-	var socket = io('http://localhost');
+	var socket = io('http://localhost', {
+    reconnection: false
+  });
   socket.on('version', function (data) {
   	if (data.success) {
   		versionOkay();
   		return;
   	}
     socket.emit('version', {version: version});
+  });
+
+  socket.on('disconnect', function() {
+    $('#messages').append($('<li>').text("Disconnected from server."));
+    $("#messages").scrollTop($("#messages")[0].scrollHeight);
   });
 
   function versionOkay() {
