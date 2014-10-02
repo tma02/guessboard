@@ -7,6 +7,14 @@ html(lang="en")
     script(type='text/javascript').
       var roomId = '#{roomId}';
   body
+    .modal.fade#usernameModal
+      .modal-dialog
+        .modal-content
+          .modal-body
+            ="Type in a username to connect."
+            br
+            br
+            input.form-control#usernameInput(type="text" placeholder="Username")
     .container
       .header
         h1="Guessboard"
@@ -23,5 +31,6 @@ html(lang="en")
         Users in room #{roomId}:
       p#users
   script(type='text/javascript', src="/assets/js/jquery.min.js")
+  script(type='text/javascript', src="/assets/js/bootstrap.min.js")
   script(type='text/javascript', src="/socket.io/socket.io.js")
   script(type='text/javascript', src="/assets/js/app.js")

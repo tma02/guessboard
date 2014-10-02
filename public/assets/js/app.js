@@ -2,6 +2,7 @@ $(function() {
 	var version = '1';
 	var inRoom = false;
 	var self = {};
+  var username = '';
 
 	var lastX = 0;
 	var lastY = 0;
@@ -10,24 +11,40 @@ $(function() {
 	var color = "#333333";
   var timeLeft = 0;
   var maxTime = 60;
+  var socket = {};
 	$('#gameCanvas').attr('width', $('#canvasContainer').width());
   $('#everything').hide();
-
-	var socket = io('http://localhost', {
-    reconnection: false
-  });
-  socket.on('version', function (data) {
-  	if (data.success) {
-  		versionOkay();
-  		return;
-  	}
-    socket.emit('version', {version: version});
+  $('#usernameModal').modal({
+    backdrop: 'static',
+    keyboard: false
   });
 
-  socket.on('disconnect', function() {
-    $('#messages').append($('<li>').text("Disconnected from server."));
-    $("#messages").scrollTop($("#messages")[0].scrollHeight);
+  $('#usernameInput').keypress(function(e) {
+    if(e.which == 13) {
+      username = $('#usernameInput').val();
+      $('#usernameModal').modal('hide');
+      connect();
+    }
   });
+	
+  function connect() {
+    socket = io('http://localhost', {
+      reconnection: false
+    });
+
+    socket.on('version', function (data) {
+      if (data.success) {
+        versionOkay();
+        return;
+      }
+      socket.emit('version', {version: version, username: username});
+    });
+
+    socket.on('disconnect', function() {
+      $('#messages').append($('<li>').text("Disconnected from server."));
+      $("#messages").scrollTop($("#messages")[0].scrollHeight);
+    });
+  }
 
   function versionOkay() {
   	socket.emit('joinRoom', {roomId: roomId});
