@@ -4,6 +4,7 @@ html(lang="en")
     title="Guessboard"
     link(rel="stylesheet", type="text/css", href="/assets/css/bootstrap.min.css")
     link(rel="stylesheet", type="text/css", href="/assets/css/app.css")
+    link(rel="stylesheet", type="text/css", href="/assets/css/spectrum.css")
     script(type='text/javascript').
       var roomId = '#{roomId}';
   body
@@ -27,10 +28,12 @@ html(lang="en")
         .col-md-3
           ul#messages
           input.form-control#chatbar(type="text", placeholder="Type here to chat")
+      input#color(type="text" val="#333")
       p.
         Users in room #{roomId}:
       p#users
   script(type='text/javascript', src="/assets/js/jquery.min.js")
+  script(type='text/javascript', src="/assets/js/spectrum.js")
   script(type='text/javascript', src="/assets/js/bootstrap.min.js")
   script(type='text/javascript', src="/socket.io/socket.io.js")
   script(type='text/javascript', src="/assets/js/app.js")

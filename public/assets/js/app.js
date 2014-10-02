@@ -8,7 +8,7 @@ $(function() {
 	var lastY = 0;
 	var paint = false;
   var canPaint = false;
-	var color = "#333333";
+	var color = "#333";
   var timeLeft = 0;
   var maxTime = 60;
   var socket = {};
@@ -17,6 +17,9 @@ $(function() {
   $('#usernameModal').modal({
     backdrop: 'static',
     keyboard: false
+  });
+  $('#color').spectrum({
+    color: "#333"
   });
 
   $('#usernameInput').keypress(function(e) {
@@ -110,7 +113,7 @@ $(function() {
   	  lastY = e.pageY - this.parentNode.offsetTop - this.offsetTop;
   	  paint = true;
   	  //sorry about this hacky stuff
-  		addClick(lastX, lastY, lastX + 1, lastY, color, true);
+  		addClick(lastX, lastY, lastX + 1, lastY, $('#color').spectrum('get').toHexString(), true);
   	});
 
   	$('#gameCanvas').mouseup(function(e) {
@@ -121,7 +124,7 @@ $(function() {
   	  var mouseX = e.pageX - this.parentNode.offsetLeft - this.offsetLeft;
   	  var mouseY = e.pageY - this.parentNode.offsetTop - this.offsetTop;
   	  if (paint) {
-  	  	addClick(mouseX, mouseY, lastX, lastY, color, true);
+  	  	addClick(mouseX, mouseY, lastX, lastY, $('#color').spectrum('get').toHexString(), true);
   	  }
   	  lastX = mouseX;
   	  lastY = mouseY;
