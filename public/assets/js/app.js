@@ -102,6 +102,9 @@ $(function() {
 
     $('#chatbar').keypress(function(e) {
       if(e.which == 13) {
+        if ($(this).val() === '') {
+          return;
+        }
         socket.emit('chat', {message: $(this).val()});
         $(this).val('');
       }
