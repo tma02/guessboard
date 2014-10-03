@@ -12,7 +12,7 @@ html(lang="en")
         h1(style="margin-top: 0;")="Guessboard"
         p.lead="Guess what your friends are drawing."
         a.btn.btn-lg.btn-success(href="/g/#{roomId}")="Create a room"
-      .row(style="text-align: center;")
+      .row(style="text-align: center; border-bottom: solid 1px #eee; margin-bottom: 15px;")
         .col-md-4
           h1
             span.glyphicon.glyphicon-flash
@@ -34,3 +34,10 @@ html(lang="en")
             ="Private"
           p.
             All rooms on Guessboard are private. Users must know the randomly generated room ID to join.
+      a.btn.btn-xs.btn-default(href="http://github.com/tma02")
+        span.glyphicon.glyphicon-heart
+        =" tma02"
+      =" "
+      a.btn.btn-xs.btn-default(href="http://github.com/tma02/guessboard")
+        span.glyphicon.glyphicon-heart
+        =" tma02/guessboard"
