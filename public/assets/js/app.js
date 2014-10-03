@@ -67,9 +67,8 @@ $(function() {
   	console.log('game start');
   	$('#everything').show();
     setInterval(function() {
-      timeLeft--;
-      if (timeLeft <= 0) {
-        return;
+      if (timeLeft > 0) {
+        timeLeft--;
       }
       $('#timer').css('width', ((timeLeft / maxTime) * 100) + '%');
     }, 1000);
