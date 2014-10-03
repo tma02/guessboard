@@ -12,3 +12,25 @@ html(lang="en")
         h1(style="margin-top: 0;")="Guessboard"
         p.lead="Guess what your friends are drawing."
         a.btn.btn-lg.btn-success(href="/g/#{roomId}")="Create a room"
+      .row(style="text-align: center;")
+        .col-md-4
+          h1
+            span.glyphicon.glyphicon-flash
+            br
+            ="Fast"
+          p.
+            Games on Guessboard have low server side latency. Users can see what's being drawn with minimal latency.
+        .col-md-4
+          h1
+            span.glyphicon.glyphicon-cloud
+            br
+            ="Cloud"
+          p.
+            Guessboard games are hosted in the cloud. Everyone playing will be able to see the same stuff at the same time.
+        .col-md-4
+          h1
+            span.glyphicon.glyphicon-lock
+            br
+            ="Private"
+          p.
+            All rooms on Guessboard are private. Users must know the randomly generated room ID to join.
