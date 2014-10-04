@@ -24,6 +24,9 @@ $(function() {
 
   $('#usernameInput').keypress(function(e) {
     if(e.which == 13) {
+      if ($(this).val() === '') {
+        return;
+      }
       username = $('#usernameInput').val();
       $('#usernameModal').modal('hide');
       connect();
