@@ -121,7 +121,7 @@ $(function() {
   		addClick(lastX, lastY, lastX + 1, lastY, $('#color').spectrum('get').toHexString(), true);
   	});
 
-  	$('#gameCanvas').mouseup(function(e) {
+  	$('body').mouseup(function(e) {
   		paint = false;
   	});
 
