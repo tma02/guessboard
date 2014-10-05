@@ -43,7 +43,7 @@ $(function() {
         versionOkay();
         return;
       }
-      socket.emit('version', {version: version, username: username});
+      socket.emit('version', {version: version, username: username, password: ''});
     });
 
     socket.on('disconnect', function() {
