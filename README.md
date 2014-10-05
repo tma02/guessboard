@@ -1,7 +1,7 @@
 guessboard
 ==========
 
-A place to guess what your friends are drawing.
+A quick place to guess what your friends are drawing with little set-up.
 
 #Usage
 
