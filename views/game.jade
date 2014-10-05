@@ -16,6 +16,13 @@ html(lang="en")
             br
             br
             input.form-control#usernameInput(type="text" placeholder="Username")
+    .modal.fade#errorModal
+      .modal-dialog
+        .modal-content
+          .modal-header#errorHeader
+          .modal-body#errorBody
+          .modal-footer
+            a.btn.btn-primary(href="/g/#{roomId}")="Reconnect"
     .container
       .header
         h1="Guessboard"
