@@ -34,7 +34,7 @@ $(function() {
   });
 	
   function connect() {
-    socket = io('http://localhost', {
+    socket = io('/', {
       reconnection: false
     });
 
